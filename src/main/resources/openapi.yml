@@ -1,0 +1,93 @@
+---
+openapi: "3.0.3"
+info:
+  title: "Dictionary service REST API"
+  description: "If you need to update your dictionary, you're at the right place"
+  version: "yolo"
+servers:
+  - url: "http://localhost:8080/"
+paths:
+  /pony:
+    post:
+      tags:
+        - "pony-controller"
+      summary: "post"
+      operationId: ponyPost
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PonyObject"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PonyResponse"
+        "201":
+          description: "Created"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "404":
+          description: "Not Found"
+components:
+  schemas:
+    PonyObject:
+      discriminator:
+        propertyName: versionId
+        mapping:
+          v1: "#/components/schemas/PonyObjectV1"
+          v2: "#/components/schemas/PonyObjectV2"
+      type: "object"
+      properties:
+        name:
+          type: "string"
+        versionId:
+          type: string
+    PonyObjectV1:
+      allOf:
+        - $ref: "#/components/schemas/PonyObject"
+        - type: "object"
+          properties:
+            wingsColors:
+              type: "string"
+              default: "RED"
+    PonyObjectV2:
+      allOf:
+        - $ref: "#/components/schemas/PonyObject"
+        - type: "object"
+          properties:
+            cornSize:
+              type: "integer"
+              default: 10
+    PonyResponse:
+      discriminator:
+        propertyName: versionId
+        mapping:
+          v1: "#/components/schemas/PonyResponseV1"
+          v2: "#/components/schemas/PonyResponseV2"
+      type: "object"
+      properties:
+        name:
+          type: "string"
+        versionId:
+          type: string
+    PonyResponseV1:
+      allOf:
+        - $ref: "#/components/schemas/PonyResponse"
+        - type: "object"
+          properties:
+            wingsColors:
+              type: "string"
+              default: "RED"
+    PonyResponseV2:
+      allOf:
+        - $ref: "#/components/schemas/PonyResponse"
+        - type: "object"
+          properties:
+            cornSize:
+              type: "integer"
+              default: 10

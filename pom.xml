@@ -5,17 +5,18 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.0.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <version>2.7.6</version>
+        <relativePath/>
     </parent>
-    <groupId>bzh.zomzog.demo</groupId>
-    <artifactId>openapiinheritance</artifactId>
+    <groupId>common</groupId>
+    <artifactId>demoversioning</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>demo</name>
-    <description>Demo project for Spring Boot</description>
+    <name>demoversioning</name>
+    <description>Demo versioning project for Spring Boot</description>
 
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>17</java.version>
+        <openapi-generator-version>4.3.1</openapi-generator-version>
     </properties>
 
     <dependencies>
@@ -23,25 +24,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <!-- SWAGGER DEPENDENCIES -->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
             <version>2.9.2</version>
         </dependency>
 
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>2.9.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-
-        <!-- Bean Validation API support -->
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
@@ -50,7 +38,7 @@
         <dependency>
             <groupId>org.openapitools</groupId>
             <artifactId>jackson-databind-nullable</artifactId>
-            <version>0.1.0</version>
+            <version>0.2.4</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -63,6 +51,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
 
     <build>
@@ -70,29 +63,41 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
             </plugin>
 
             <plugin>
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
-                <version>4.3.1</version>
-<!--                <version>4.2.0</version>-->
+                <version>${openapi-generator-version}</version>
                 <executions>
                     <execution>
                         <goals>
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>${basedir}/src/main/resources/api/api.yml</inputSpec>
+                            <inputSpec>${basedir}/src/main/resources/openapi.yml</inputSpec>
                             <generatorName>spring</generatorName>
                             <configOptions>
                                 <sourceFolder>src/gen/java/main</sourceFolder>
                                 <interfaceOnly>true</interfaceOnly>
                                 <delegatePattern>true</delegatePattern>
                             </configOptions>
-                            <modelPackage>bzh.zomzog.demo.openapiinheritance.domain.api</modelPackage>
-                            <apiPackage>bzh.zomzog.demo.openapiinheritance.controller.api</apiPackage>
+                            <modelPackage>demoversioning.domain.api</modelPackage>
+                            <apiPackage>demoversioning.controller.api</apiPackage>
                             <generateSupportingFiles>true</generateSupportingFiles>
+                            <additionalModelTypeAnnotations>
+                                    @lombok.Builder
+                                    @lombok.Getter
+                                    @lombok.extern.jackson.Jacksonized
+                            </additionalModelTypeAnnotations>
                         </configuration>
                     </execution>
                 </executions>

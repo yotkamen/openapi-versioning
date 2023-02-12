@@ -1,4 +1,4 @@
-package bzh.zomzog.demo.openapiinheritance;
+package demoversioning;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

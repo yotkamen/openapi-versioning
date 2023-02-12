@@ -1,4 +1,4 @@
-package bzh.zomzog.demo.openapiinheritance;
+package demoversioning;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
