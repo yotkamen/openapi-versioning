@@ -1,0 +1,55 @@
+** Service Versioning
+  Evolution is inherent property of any system. The system evolves with the time
+  and changes can be observed from within and from outside. As per the
+  definition, a system is a group of interacting or interrelated elements that
+  act according to a set of rules to form a unified whole. The evolution of a
+  system comprises of an evolution of its elements. Most often evolution changes
+  does not happen simultaneously to all elements. A particular element may
+  evolve before the ones that interact with it do and this may obstruct the
+  interactions.
+
+  In a system where we have more control on certain elements but not so much on
+  those that interact with them we need to ensure that the evolution does not
+  break it. One way to do this is to keep the original when spawning a new
+  version. The old ones should be disposed only when they are no longer used.
+  The new and the original elements will be from different generations but will
+  have plenty of common traits and we may consider them from the same kind.
+
+  When eventually the elements we do not have so much control over evolve enough
+  so that they can interact with the one we already evolved, they need to find a
+  way to allow interaction among them. We can define a convention to allow such
+  interaction, i.e.:
+  - each new generation will be attributed a version
+  - a routing table will allow messages to be routed by element kind and by its
+    version.
+
+  In this document we are interested in software systems. Using the domain
+  terminology we can call the elements - objects, the interactions - message
+  passing, and the evolution - versioning.
+
+  Even more specifically we are interested in API versioning based on the
+  OpenAPI specification. The elements that we have control over are the
+  endpoints on the server and the oters are the variuos clients that use our
+  service. So we would like to be able to define new versions of our endpoints
+  and to allow the old used ones to work. We might do this by:
+
+  - defining new endpoints for the new version
+  - allowing existing endpoints to route messages according to their version
+
+  Static binding between the clients and the server can happen only in the
+  former case. However the OpenAPI specification does not support versioning of
+  the endpoints (called paths there). What comes out of the box, however, is the
+  ability to pass polymorphic objects using the ~discriminator~ concept.
+
+  Changing the specification that so widely used can be attempted in order to
+  benefit from the early binding, however for quick results we can make use of
+  the already implemented in the OpenAPI specification polymorphism.
+
+  The specifics of the OpenAPI implementation require us to define different
+  names of the request parameters and the responses and to maintain the same
+  version discriminator among them by convention.
+
+  In a Java implementation the binding between the client and the correct
+  endpoint version can happen manually using the ~instanceof~ Java operator but
+  this can probably be improved by providing this functionality in the
+  automatically generated code.
