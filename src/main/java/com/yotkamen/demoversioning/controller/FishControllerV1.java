@@ -12,10 +12,10 @@ import org.springframework.http.ResponseEntity;
 public class FishControllerV1 implements V1Api {
 
     @Override
-    public ResponseEntity<FishResponseV1> fishPostV1(FishObjectV1 fishObjectV1) {
+    public ResponseEntity<FishResponseV1> fishPostV1(FishObjectV1 fish) {
         final FishResponseV1 unicorn = new FishResponseV1();
-        unicorn.setName(fishObjectV1.getName());
-        unicorn.setWingsColors(fishObjectV1.getWingsColors());
+        unicorn.setName(fish.getName());
+        unicorn.setWingsColors(fish.getWingsColors());
         return ResponseEntity.ok(unicorn);
     }
 }
