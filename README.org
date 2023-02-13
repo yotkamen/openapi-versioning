@@ -36,11 +36,11 @@
   - allowing existing endpoints to route messages according to their version
 
   Static binding between the clients and the server can happen only in the
-  former case. The current Open API specification does not have a notion for
-  path versioning. Nevertheless this can be done manually. Changing the
+  former case. The current [[https://github.com/OAI/OpenAPI-Specification][Open API specificationn]] does not have a notion for
+  path versioning. Nevertheless this can be done manually. The current Open API
   specification that so widely used can be attempted in order to benefit from
   the early binding, however for quick results we can make use of what is
-  already implemented.
+  already implemented. There is such [[https://github.com/OAI/OpenAPI-Specification/issues/2142][request]] that has been logged on their repo.
 
   Dynamic binding can be implemented fro the later (routing) approach as
   polymorphism using the ~discriminator~ concept comes out of the box.
