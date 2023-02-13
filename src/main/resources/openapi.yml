@@ -7,6 +7,58 @@ info:
 servers:
   - url: "http://localhost:8080/"
 paths:
+  /v1/fish/:
+    post:
+      tags:
+        - "fish-controller"
+      summary: "post"
+      operationId: fishPostV1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FishObjectV1"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FishResponseV1"
+        "201":
+          description: "Created"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "404":
+          description: "Not Found"
+  /v2/fish/:
+    post:
+      tags:
+        - "fish-controller"
+      summary: "post"
+      operationId: fishPostV2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FishObjectV2"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FishResponseV2"
+        "201":
+          description: "Created"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "404":
+          description: "Not Found"
   /pony:
     post:
       tags:
@@ -91,3 +143,36 @@ components:
             cornSize:
               type: "integer"
               default: 10
+
+    FishObjectV1:
+      type: "object"
+      properties:
+        name:
+          type: "string"
+        wingsColors:
+          type: "string"
+          default: "RED"
+    FishObjectV2:
+      type: "object"
+      properties:
+        name:
+          type: "string"
+        cornSize:
+          type: "integer"
+          default: 10
+    FishResponseV1:
+      type: "object"
+      properties:
+        name:
+          type: "string"
+        wingsColors:
+          type: "string"
+          default: "RED"
+    FishResponseV2:
+      type: "object"
+      properties:
+        name:
+          type: "string"
+        cornSize:
+          type: "integer"
+          default: 10

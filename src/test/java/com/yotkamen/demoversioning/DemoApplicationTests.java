@@ -1,4 +1,4 @@
-package demoversioning;
+package com.yotkamen.demoversioning;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

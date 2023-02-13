@@ -8,7 +8,7 @@
         <version>2.7.6</version>
         <relativePath/>
     </parent>
-    <groupId>common</groupId>
+    <groupId>com.yotkamen</groupId>
     <artifactId>demoversioning</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>demoversioning</name>
@@ -90,8 +90,8 @@
                                 <interfaceOnly>true</interfaceOnly>
                                 <delegatePattern>true</delegatePattern>
                             </configOptions>
-                            <modelPackage>demoversioning.domain.api</modelPackage>
-                            <apiPackage>demoversioning.controller.api</apiPackage>
+                            <modelPackage>com.yotkamen.demoversioning.domain.api</modelPackage>
+                            <apiPackage>com.yotkamen.demoversioning.controller.api</apiPackage>
                             <generateSupportingFiles>true</generateSupportingFiles>
                             <additionalModelTypeAnnotations>
                                     @lombok.Builder

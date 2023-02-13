@@ -1,12 +1,12 @@
-package demoversioning.controller;
+package com.yotkamen.demoversioning.controller;
 
-import demoversioning.controller.api.PonyApi;
-import demoversioning.domain.api.PonyObject;
-import demoversioning.domain.api.PonyObjectV1;
-import demoversioning.domain.api.PonyObjectV2;
-import demoversioning.domain.api.PonyResponse;
-import demoversioning.domain.api.PonyResponseV1;
-import demoversioning.domain.api.PonyResponseV2;
+import com.yotkamen.demoversioning.controller.api.PonyApi;
+import com.yotkamen.demoversioning.domain.api.PonyObject;
+import com.yotkamen.demoversioning.domain.api.PonyObjectV1;
+import com.yotkamen.demoversioning.domain.api.PonyObjectV2;
+import com.yotkamen.demoversioning.domain.api.PonyResponse;
+import com.yotkamen.demoversioning.domain.api.PonyResponseV1;
+import com.yotkamen.demoversioning.domain.api.PonyResponseV2;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

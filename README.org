@@ -37,19 +37,22 @@
   - allowing existing endpoints to route messages according to their version
 
   Static binding between the clients and the server can happen only in the
-  former case. However the OpenAPI specification does not support versioning of
-  the endpoints (called paths there). What comes out of the box, however, is the
-  ability to pass polymorphic objects using the ~discriminator~ concept.
+  former case. The current OpenAPI specification does not have a notion for path
+  versioning. Nevertheless this can be done manually. Alternatively we can use
+  the later (routing) approach as polymorphism using the ~discriminator~ concept
+  comes out of the box.
 
   Changing the specification that so widely used can be attempted in order to
   benefit from the early binding, however for quick results we can make use of
-  the already implemented in the OpenAPI specification polymorphism.
+  what is already implemented in the OpenAPI specification.
 
-  The specifics of the OpenAPI implementation require us to define different
-  names of the request parameters and the responses and to maintain the same
-  version discriminator among them by convention.
+  The specifics of the OpenAPI implementation require us to define not only
+  different names of the request parameters but also for the responses. When
+  defining the versioned endpoints we need to have different names for the
+  operators in the corresponding versions. In the latter (routing) we need to
+  maintain the same version discriminator among them by convention.
 
   In a Java implementation the binding between the client and the correct
-  endpoint version can happen manually using the ~instanceof~ Java operator but
-  this can probably be improved by providing this functionality in the
-  automatically generated code.
+  endpoint version (in the routing case) can happen manually using the
+  ~instanceof~ Java operator but this can probably be improved by providing this
+  functionality in the automatically generated code.
